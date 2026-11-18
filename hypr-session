@@ -1,0 +1,4 @@
+#!/bin/sh
+# Belongs in /usr/local/bin/hypr-session
+. "$HOME/.profile"
+exec dbus-run-session start-hyprland

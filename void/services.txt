@@ -1,0 +1,5 @@
+greetd
+dbus
+elogind
+NetworkManager
+bluetoothd

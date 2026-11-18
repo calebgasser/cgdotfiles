@@ -1,0 +1,9 @@
+greetd
+tuigreet
+elogind
+dbus
+polkit
+udisks2
+power-profiles-daemon
+NetworkManager
+bluez

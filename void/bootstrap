@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+cd "$(dirname "$0")"
+
+sudo xbps-install -Sy $(cat packages.txt)
+cp -r etc/. /etc/
+for s in $(cat services.txt); do
+  [ -e "/var/services/$s" ] || sudo ln -sf "/etc/sv/$s" /var/service/
+done
+
+sudo rm -f /var/service/dhcpcd /var/service/wpa_supplicant /var/service/acpid
+sudo sv status /var/service/*
+

@@ -1,0 +1,2 @@
+#!/bin/sh
+guix package -m ./core_manifest.scm -m ./gui_manifest.scm -m ./langs_manifest.scm -m ./other_manifest.scm

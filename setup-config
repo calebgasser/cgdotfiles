@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ ! -d "$HOME/.config/hypr" ]; then
+    mkdir -p "$HOME/.config/hypr"
+fi
+
+if [ ! -d "$HOME/.config/waybar" ]; then
+    mkdir -p "$HOME/.config/waybar"
+fi
+
+if [ ! -d "$HOME/.config/kitty/" ]; then
+    mkdir -p "$HOME/.config/kitty/"
+fi
+
+sudo ln -sf "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+
+sudo ln -sf "$(pwd)/.emacs" "$HOME/.emacs"
+
+sudo ln -sf "$(pwd)/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
+
+sudo ln -sf "$(pwd)/hypr-session" "/usr/local/bin/hypr-session"
+
+sudo ln -sf "$(pwd)/greetd/config.toml" "/etc/greetd/config.toml"
+
+sudo ln -sf "$(pwd)"/waybar/* "$HOME"/.config/waybar/
+
+sudo ln -sf "$(pwd)/waybar/style.css" "$HOME/.config/waybar/"
+symlink_files_home=(".profile" ".bashrc" ".bash_profile")
+
+for f in "${symlink_files_home[@]}"; do
+    if [[ -f "$f" ]]; then
+       echo "Adding link $(pwd)/$f to $HOME/$f"
+       sudo ln -sf "$(pwd)/$f" "$HOME/$f"
+    fi
+done
+
+# GIT setup
+git config --global init.defaultBranch develop
+git config --global user.name "Caleb Gasser"
+git config --global user.email "1561693+calebgasser@users.noreply.github.com"
