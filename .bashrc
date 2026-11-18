@@ -22,6 +22,6 @@ unset GUIX_PROFILE
 
 ## SSH
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/general_ed25519
+    eval "$(ssh-agent -s)" > /dev/null
+    ssh-add ~/.ssh/general_ed25519 > /dev/null 2>&1
 fi   
