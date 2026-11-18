@@ -1,12 +1,27 @@
 ;; -*- lexical-binding: t; -*-
 (require 'package) ; for package-archives
+;; Add MELPA channel for plugins
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+;; Ido completion
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
 
-;; Add MELPA channel for plugins
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+;; Expand Region
+(unless (package-installed-p 'expand-region)
+  (package-refresh-contents)
+  (package-install 'expand-region))
+(require 'expand-region)
+(global-set-key (kbd "C-c e") #'er/expand-region)
+
+;; Yank to clipboard
+(setq interprogram-cut-function
+      (lambda (text)
+        (let ((p (make-process :name "wl-copy" :command '("wl-copy") :connection-type 'pipe)))
+          (process-send-string p text)
+          (process-send-eof p))))
 
 ;; Smex keybindings
 (global-set-key (kbd "M-x") 'smex)
@@ -14,7 +29,13 @@
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;; Set our compile shortcuts
+(global-set-key (kbd "C-c c") #'compile)
+(global-set-key (kbd "C-c r") #'recompile)
+(setq compilation-ask-about-save nil) ; save buffers without asking
+
 ;; General Settings
+(electric-pair-mode 1) ; Close paretheses and what not
 (setq vc-follow-symlinks t) ; Stop asking about symlink following
 (setq inhibit-startup-screen t) ; Get rid of startup screen
 (menu-bar-mode 0) ; No menu bar at top
@@ -52,7 +73,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(inhibit-mouse smex)))
+ '(package-selected-packages '(expand-region inhibit-mouse smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
