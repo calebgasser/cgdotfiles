@@ -3,6 +3,7 @@
 ;; Add MELPA channel for plugins
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
 (menu-bar-mode -1)
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)
@@ -19,20 +20,9 @@
       kept-old-versions 5    ; and how many of the old
       )
 
-; Disable mouse interaction
-(use-package inhibit-mouse
-  :custom
-  ;; Disable highlighting of clickable text such as URLs and hyperlinks when
-  ;; hovered by the mouse pointer.
-  (inhibit-mouse-adjust-mouse-highlight t)
-
-  ;; Disables the use of tooltips (show-help-function) during mouse events.
-  (inhibit-mouse-adjust-show-help-function t)
-
-  :init
-  (if (daemonp)
-      (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
-    (inhibit-mouse-mode 1)))
+(use-package disable-mouse
+  :ensure t
+  :config (global-disable-mouse-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
