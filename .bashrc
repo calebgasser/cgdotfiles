@@ -21,4 +21,7 @@ source "$GUIX_PROFILE/etc/profile"
 unset GUIX_PROFILE
 
 ## SSH
-eval "$(ssh-agent -s)" > /dev/null
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/general_ed25519
+fi   
