@@ -10,3 +10,6 @@ export PATH="$HOME/.config/guix/current/bin:$PATH"
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=Hyprland
 export QT_QPA_PLATFORM="wayland;xcb"
+
+# Make sure guix fonts can be found by XDG
+export XDG_DATA_DIRS="$HOME/.guix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"

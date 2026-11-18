@@ -48,5 +48,7 @@
 	"font-fira-code"; Mono space font
 	"font-hack"; Mono space font
 	"font-nerd-symbols"; Nerd font icons
+	"hicolor-icon-theme" ; Icons
+	"adwaita-icon-theme" ; More icons
 	"librewolf"; Browser
 	"xorg-server-xwayland")); For running apps that don't support wayland yet

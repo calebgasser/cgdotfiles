@@ -12,19 +12,24 @@ if [ ! -d "$HOME/.config/kitty/" ]; then
     mkdir -p "$HOME/.config/kitty/"
 fi
 
+echo "Linking: " "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 sudo ln -sf "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
+echo "Linking: " "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 sudo ln -sf "$(pwd)/.emacs" "$HOME/.emacs"
 
+echo "Linking: " "$(pwd)/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
 sudo ln -sf "$(pwd)/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
 
+echo "Linking: " "$(pwd)/hypr-session" "/usr/local/bin/hypr-session"
 sudo ln -sf "$(pwd)/hypr-session" "/usr/local/bin/hypr-session"
 
+echo "Linking: " "$(pwd)/greetd/config.toml" "/etc/greetd/config.toml"
 sudo ln -sf "$(pwd)/greetd/config.toml" "/etc/greetd/config.toml"
 
+echo "Linking: " "$(pwd)"/waybar/* "$HOME"/.config/waybar/
 sudo ln -sf "$(pwd)"/waybar/* "$HOME"/.config/waybar/
 
-sudo ln -sf "$(pwd)/waybar/style.css" "$HOME/.config/waybar/"
 symlink_files_home=(".profile" ".bashrc" ".bash_profile")
 
 for f in "${symlink_files_home[@]}"; do

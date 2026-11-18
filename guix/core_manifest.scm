@@ -5,6 +5,7 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest (list
+			   "tree"
 			   "jq"
 			   "fzf"
 			   "bat"
